@@ -1,0 +1,28 @@
+name: Python CI
+
+# Kapan pipeline dijalankan (saat push atau pull request)
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Ambil kode dari repo GitHub
+    - uses: actions/checkout@v3
+
+    # Setup Python versi tertentu
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    # Install dependensi (kalau perlu)
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+
+    # Jalankan program kamu
+    - name: Run the program
+      run: |
+        python main.py
